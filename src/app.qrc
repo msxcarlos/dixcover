@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>icons/Wizard.png</file>
+        <file>icons/Text.png</file>
+        <file>icons/Reduce-Glass-orange.png</file>
+        <file>icons/Photo.png</file>
+        <file>icons/old-camera.png</file>
+        <file>icons/Movie.png</file>
+        <file>icons/Magnify-Glass-blue.png</file>
+        <file>icons/Adjust.png</file>
+        <file>icons/TurnOnOff.png</file>
+        <file>icons/Shot.png</file>
+        <file>icons/Focus.png</file>
+        <file>icons/Settings-blue.png</file>
+    </qresource>
+</RCC>

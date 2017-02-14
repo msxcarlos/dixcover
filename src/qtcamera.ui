@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtCamera</class>
+ <widget class="QWidget" name="QtCamera">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>772</width>
+    <height>463</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Camera</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="1">
+    <widget class="QStackedWidget" name="stackedWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>1</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>144</red>
+           <green>144</green>
+           <blue>144</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>144</red>
+           <green>144</green>
+           <blue>144</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="Base">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>144</red>
+           <green>144</green>
+           <blue>144</blue>
+          </color>
+         </brush>
+        </colorrole>
+        <colorrole role="Window">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>144</red>
+           <green>144</green>
+           <blue>144</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="viewfinderPage">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QCameraViewfinder" name="viewfinder" native="true"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="previewPage">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="lastImagePreviewLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Image:</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QToolButton" name="btnLock">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Focus</string>
+        </property>
+        <property name="icon">
+         <iconset resource="app.qrc">
+          <normaloff>:/images/icons/Focus.png</normaloff>:/images/icons/Focus.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnTakeImage">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Capture Photo</string>
+        </property>
+        <property name="icon">
+         <iconset resource="app.qrc">
+          <normaloff>:/images/icons/Shot.png</normaloff>:/images/icons/Shot.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnStartCamera">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Start Camera</string>
+        </property>
+        <property name="icon">
+         <iconset resource="app.qrc">
+          <normaloff>:/images/icons/TurnOnOff.png</normaloff>:/images/icons/TurnOnOff.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnSettings">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Settings...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="app.qrc">
+          <normaloff>:/images/icons/Settings-blue.png</normaloff>:/images/icons/Settings-blue.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextUnderIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Exposure Compensation:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSlider" name="sldExposureCompensation">
+        <property name="minimum">
+         <number>-4</number>
+        </property>
+        <property name="maximum">
+         <number>4</number>
+        </property>
+        <property name="pageStep">
+         <number>2</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::TicksAbove</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder>sldExposureCompensation</zorder>
+     <zorder>label</zorder>
+     <zorder>btnLock</zorder>
+     <zorder>btnTakeImage</zorder>
+     <zorder>btnStartCamera</zorder>
+     <zorder>btnSettings</zorder>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCameraViewfinder</class>
+   <extends>QWidget</extends>
+   <header>qcameraviewfinder.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="app.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>sldExposureCompensation</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>QtCamera</receiver>
+   <slot>setExposureCompensation(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>667</x>
+     <y>424</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>690</x>
+     <y>306</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnLock</sender>
+   <signal>clicked()</signal>
+   <receiver>QtCamera</receiver>
+   <slot>toggleLock()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>652</x>
+     <y>65</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>486</x>
+     <y>1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnTakeImage</sender>
+   <signal>clicked()</signal>
+   <receiver>QtCamera</receiver>
+   <slot>takeImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>652</x>
+     <y>130</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>484</x>
+     <y>84</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnStartCamera</sender>
+   <signal>clicked()</signal>
+   <receiver>QtCamera</receiver>
+   <slot>startCamera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>636</x>
+     <y>200</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>486</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnSettings</sender>
+   <signal>clicked()</signal>
+   <receiver>QtCamera</receiver>
+   <slot>configureCaptureSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>636</x>
+     <y>255</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>485</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>takeImage()</slot>
+  <slot>toggleLock()</slot>
+  <slot>setExposureCompensation(int)</slot>
+  <slot>startCamera()</slot>
+  <slot>stopCamera()</slot>
+  <slot>configureCaptureSettings()</slot>
+ </slots>
+</ui>
