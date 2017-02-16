@@ -102,8 +102,8 @@ void ParallelWebCam::textDetection()
     vector< Ptr<ERFilter> > er_filters2;
     for (int i=0; i<2; i++)
     {
-        Ptr<ERFilter> er_filter1 = createERFilterNM1(loadClassifierNM1("../../Miro/resources/trained_classifierNM1.xml"),8,0.00015f,0.13f,0.2f,true,0.1f);
-        Ptr<ERFilter> er_filter2 = createERFilterNM2(loadClassifierNM2("../../Miro/resources/trained_classifierNM2.xml"),0.5);
+        Ptr<ERFilter> er_filter1 = createERFilterNM1(loadClassifierNM1("../../DiXCover/resources/trained_classifierNM1.xml"),8,0.00015f,0.13f,0.2f,true,0.1f);
+        Ptr<ERFilter> er_filter2 = createERFilterNM2(loadClassifierNM2("../../DiXCover/resources/trained_classifierNM2.xml"),0.5);
         er_filters1.push_back(er_filter1);
         er_filters2.push_back(er_filter2);
     }
@@ -120,7 +120,7 @@ void ParallelWebCam::textDetection()
     }
 
     Mat transition_p;
-    string filename = "../../Miro/resources/OCRHMM_transitions_table.xml";
+    string filename = "../../DiXCover/resources/OCRHMM_transitions_table.xml";
     FileStorage fs(filename, FileStorage::READ);
     fs["transition_probabilities"] >> transition_p;
     fs.release();
@@ -130,7 +130,7 @@ void ParallelWebCam::textDetection()
     vector< Ptr<OCRHMMDecoder> > decoders;
     for (int o=0; o<num_ocrs; o++)
     {
-      decoders.push_back(OCRHMMDecoder::create(loadOCRHMMClassifierNM("../../Miro/resources/OCRHMM_knn_model_data.xml.gz"),
+      decoders.push_back(OCRHMMDecoder::create(loadOCRHMMClassifierNM("../../DiXCover/resources/OCRHMM_knn_model_data.xml.gz"),
                                                voc, transition_p, emission_p));
     }
     cout << " Done!" << endl;
