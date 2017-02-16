@@ -33,7 +33,7 @@ void TestDiXCover::testOpencv()
 {
     QSKIP("This test skip...");
     Mat image;
-      image = imread( "../../DiXCover/resources/scenetext01.jpg", 1 );
+      image = imread( "../resources/scenetext01.jpg", 1 );
 
       if( !image.data )
         {
@@ -51,7 +51,7 @@ void TestDiXCover::testOpencv()
 void TestDiXCover::testTextDetection()
 {
     QSKIP("This test skip...");
-    QImage img = QImage("../../DiXCover/resources/time20100412.png");
+    QImage img = QImage("../resources/time20100412.png");
     Omens o;
     o.textDetection(img);
     QVERIFY2(true, "Failure");

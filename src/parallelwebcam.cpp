@@ -8,11 +8,13 @@
 #include "opencv2/opencv.hpp"
 
 #include <iostream>
+#include <boost/filesystem.hpp>
 
 
 using namespace std;
 using namespace cv;
 using namespace cv::text;
+using namespace boost::filesystem;
 
 //ERStat extraction is done in parallel for different channels
 class Parallel_extractCSER: public cv::ParallelLoopBody
@@ -102,8 +104,11 @@ void ParallelWebCam::textDetection()
     vector< Ptr<ERFilter> > er_filters2;
     for (int i=0; i<2; i++)
     {
-        Ptr<ERFilter> er_filter1 = createERFilterNM1(loadClassifierNM1("../../Miro/resources/trained_classifierNM1.xml"),8,0.00015f,0.13f,0.2f,true,0.1f);
-        Ptr<ERFilter> er_filter2 = createERFilterNM2(loadClassifierNM2("../../Miro/resources/trained_classifierNM2.xml"),0.5);
+        path absolutePath_trained_classifierNM1 = absolute("../resources/trained_classifierNM1.xml");
+        path absolutePath_trained_classifierNM2 = absolute("../resources/trained_classifierNM2.xml");
+
+        Ptr<ERFilter> er_filter1 = createERFilterNM1(loadClassifierNM1(absolutePath_trained_classifierNM1.string()),8,0.00015f,0.13f,0.2f,true,0.1f);
+        Ptr<ERFilter> er_filter2 = createERFilterNM2(loadClassifierNM2(absolutePath_trained_classifierNM2.string()),0.5);
         er_filters1.push_back(er_filter1);
         er_filters2.push_back(er_filter2);
     }
@@ -120,7 +125,9 @@ void ParallelWebCam::textDetection()
     }
 
     Mat transition_p;
-    string filename = "../../Miro/resources/OCRHMM_transitions_table.xml";
+    path absolutePath_OCRHMM_transitions_table = absolute("../resources/OCRHMM_transitions_table.xml");
+
+    string filename = absolutePath_OCRHMM_transitions_table.string();
     FileStorage fs(filename, FileStorage::READ);
     fs["transition_probabilities"] >> transition_p;
     fs.release();
@@ -130,7 +137,9 @@ void ParallelWebCam::textDetection()
     vector< Ptr<OCRHMMDecoder> > decoders;
     for (int o=0; o<num_ocrs; o++)
     {
-      decoders.push_back(OCRHMMDecoder::create(loadOCRHMMClassifierNM("../../Miro/resources/OCRHMM_knn_model_data.xml.gz"),
+        path absolutePath_OCRHMM_knn_model_data = absolute("../resources/OCRHMM_knn_model_data.xml.gz");
+
+        decoders.push_back(OCRHMMDecoder::create(loadOCRHMMClassifierNM(absolutePath_OCRHMM_knn_model_data.string()),
                                                voc, transition_p, emission_p));
     }
     cout << " Done!" << endl;
