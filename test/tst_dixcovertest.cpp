@@ -31,7 +31,7 @@ TestDiXCover::TestDiXCover()
 
 void TestDiXCover::testOpencv()
 {
-    QSKIP("This test skip...");
+    //QSKIP("This test skip...");
     Mat image;
       image = imread( "../resources/scenetext01.jpg", 1 );
 
@@ -50,7 +50,7 @@ void TestDiXCover::testOpencv()
 
 void TestDiXCover::testTextDetection()
 {
-    QSKIP("This test skip...");
+    //QSKIP("This test skip...");
     QImage img = QImage("../resources/time20100412.png");
     Omens o;
     o.textDetection(img);
@@ -66,7 +66,7 @@ void TestDiXCover::testWebCamTextDetection()
 
 void TestDiXCover::testQImage()
 {
-    QSKIP("This test skip...");
+    //QSKIP("This test skip...");
 
     char  arg0[] = "programName";
         char  arg1[] = "arg";

@@ -265,4 +265,3 @@ void MainWindow::updateCameraDevice(QAction *action)
 {
     //setCamera(qvariant_cast<QCameraInfo>(action->data()));
 }
-

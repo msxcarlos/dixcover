@@ -14,6 +14,7 @@ class Omens
 {
 public:
     Omens();
+    cv::Mat textDetection(const cv::Mat &img, const bool lbp_flag);
     cv::Mat textDetection(const cv::Mat &img);
     QImage textDetection(const QImage &img);
     QPixmap textDetection(const QPixmap *pixMap);
