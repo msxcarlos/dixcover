@@ -28,6 +28,7 @@ private:
     //Detected words
     //std::vector<std::pair<cv::Point2i, std::string> words_detection;
     std::vector<std::string> words_detection;
+    std::vector< cv::Point2i > words_detection_blocks;
 
 
 };

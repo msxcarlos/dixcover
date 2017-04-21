@@ -25,6 +25,26 @@ Mat Omens::textDetection(const Mat &image,bool lbp_flag) {
     cout << "IMG_W=" << image.cols << endl;
     cout << "IMG_H=" << image.rows << endl;
 
+    int grid_dim= 3; // Dimension of the grid to be considered, nxn blocks
+    // The grid will consider two dimensions (x,y)
+    vector<Rect> x_blocks;
+    vector<Rect> y_blocks;
+    vector< vector<Rect> > blocks;
+    for (int i =0 ; i < grid_dim ; i++)
+    {
+        x_blocks.push_back(Rect(i*image.cols/grid_dim,0,image.cols/grid_dim,image.rows));
+        y_blocks.push_back(Rect(0,i*image.rows/grid_dim,image.cols,image.rows/grid_dim));
+    }
+    blocks.push_back(x_blocks);
+    blocks.push_back(y_blocks);
+//    for (int i=0; i<grid_dim;i++)
+//    {
+//        for(int j=0;j<grid_dim;j++)
+//        {
+//            blocks.push_back(Rect(j*image.cols/grid_dim,i*image.cols/grid_dim,image.cols/3,image.rows/3));
+//        }
+//    }
+
     double t_d = (double)getTickCount();
     double t_r;
 
@@ -161,6 +181,13 @@ Mat Omens::textDetection(const Mat &image,bool lbp_flag) {
             }
 
         }
+        rectangle(out_img,blocks[0][0].tl(),blocks[0][0].br(),Scalar(0,0,255),3);
+        rectangle(out_img,blocks[0][1].tl(),blocks[0][1].br(),Scalar(0,0,255),3);
+        rectangle(out_img,blocks[0][2].tl(),blocks[0][2].br(),Scalar(0,0,255),3);
+        rectangle(out_img,blocks[1][0].tl(),blocks[1][0].br(),Scalar(255,0,0),3);
+        rectangle(out_img,blocks[1][1].tl(),blocks[1][1].br(),Scalar(255,0,0),3);
+        rectangle(out_img,blocks[1][2].tl(),blocks[1][2].br(),Scalar(255,0,0),3);
+        out_img.copyTo(out_img_detection);
     }
     else{
         /*Text Recognition (OCR)*/
@@ -242,8 +269,6 @@ QPixmap Omens::textDetection(const QPixmap *pixMap) {
 QString Omens::getWordsDetection() {
     QString content;
     foreach (string word, words_detection) {
-        cout << "GET WORDS DETECTION" << endl;
-        cout << word << endl; //DEBUG
         content.append(QString::fromStdString(word)+"\n");
     }
     return content;
