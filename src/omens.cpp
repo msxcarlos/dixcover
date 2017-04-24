@@ -173,6 +173,27 @@ Mat Omens::textDetection(const Mat &image,bool lbp_flag) {
                         isRepetitive(words[j]))
                     continue;
                 words_detection.push_back(words[j]);
+                // The position of the text within the page is likely to give information about its context
+                    // The intersections will help in finding the block with the greatest text presence in one single loop for each text.
+                Rect x_prev_intersection;
+                Rect y_prev_intersection;
+                Point2i block;
+                for (int k=0; k<grid_dim;k++)
+                {
+                    Rect x_intersection=blocks[0][k] & boxes[j];
+                    Rect y_intersection=blocks[1][k] & boxes[j];
+                    if(x_intersection.area() > x_prev_intersection.area())
+                    {
+                        block.x=k;
+                        x_prev_intersection=x_intersection;
+                    }
+                    if(y_intersection.area() > y_prev_intersection.area())
+                    {
+                        block.y=k;
+                        y_prev_intersection=y_intersection;
+                    }
+                }
+                words_detection_blocks.push_back(block);
                 rectangle(out_img, boxes[j].tl(), boxes[j].br(), Scalar(255,0,255),3);
                 Size word_size = getTextSize(words[j], FONT_HERSHEY_SIMPLEX, (double)scale_font, (int)(3*scale_font), NULL);
                 rectangle(out_img, boxes[j].tl()-Point(3,word_size.height+3), boxes[j].tl()+Point(word_size.width,0), Scalar(255,0,100),-1);
@@ -181,12 +202,6 @@ Mat Omens::textDetection(const Mat &image,bool lbp_flag) {
             }
 
         }
-        rectangle(out_img,blocks[0][0].tl(),blocks[0][0].br(),Scalar(0,0,255),3);
-        rectangle(out_img,blocks[0][1].tl(),blocks[0][1].br(),Scalar(0,0,255),3);
-        rectangle(out_img,blocks[0][2].tl(),blocks[0][2].br(),Scalar(0,0,255),3);
-        rectangle(out_img,blocks[1][0].tl(),blocks[1][0].br(),Scalar(255,0,0),3);
-        rectangle(out_img,blocks[1][1].tl(),blocks[1][1].br(),Scalar(255,0,0),3);
-        rectangle(out_img,blocks[1][2].tl(),blocks[1][2].br(),Scalar(255,0,0),3);
         out_img.copyTo(out_img_detection);
     }
     else{
@@ -231,6 +246,27 @@ Mat Omens::textDetection(const Mat &image,bool lbp_flag) {
                     isRepetitive(words[j]))
                 continue;
             words_detection.push_back(words[j]);
+            // The position of the text within the page is likely to give information about its context
+                // The intersections will help in finding the block with the greatest text presence in one single loop for each text.
+            Rect x_prev_intersection;
+            Rect y_prev_intersection;
+            Point2i block;
+            for (int k=0; k<grid_dim;k++)
+            {
+                Rect x_intersection=blocks[0][k] & boxes[j];
+                Rect y_intersection=blocks[1][k] & boxes[j];
+                if(x_intersection.area() > x_prev_intersection.area())
+                {
+                    block.x=k;
+                    x_prev_intersection=x_intersection;
+                }
+                if(y_intersection.area() > y_prev_intersection.area())
+                {
+                    block.y=k;
+                    y_prev_intersection=y_intersection;
+                }
+            }
+            words_detection_blocks.push_back(block);
             rectangle(out_img, boxes[j].tl(), boxes[j].br(), Scalar(255,0,255),3);
             Size word_size = getTextSize(words[j], FONT_HERSHEY_SIMPLEX, (double)scale_font, (int)(3*scale_font), NULL);
             rectangle(out_img, boxes[j].tl()-Point(3,word_size.height+3), boxes[j].tl()+Point(word_size.width,0), Scalar(255,0,100),-1);
@@ -268,9 +304,12 @@ QPixmap Omens::textDetection(const QPixmap *pixMap) {
 
 QString Omens::getWordsDetection() {
     QString content;
-    foreach (string word, words_detection) {
-        content.append(QString::fromStdString(word)+"\n");
+    for (int i=0; i<(int)words_detection.size(); i++){
+        content.append(QString::fromStdString(words_detection[i])+"\t"+QString::number(words_detection_blocks[i].x)+","+QString::number(words_detection_blocks[i].y)+"\n");
     }
+//    foreach (string word, words_detection) {
+//        content.append(QString::fromStdString(word)+"\n");
+//    }
     return content;
 }
 
